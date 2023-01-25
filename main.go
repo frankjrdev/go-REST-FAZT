@@ -45,6 +45,13 @@ func getoneTask(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	for _, task := range tasks {
+		if task.ID == taskId {
+			w.Header().Set("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(task)
+		}
+	}
+
 }
 
 func createTask(w http.ResponseWriter, r *http.Request) {
